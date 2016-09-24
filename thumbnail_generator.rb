@@ -22,7 +22,7 @@ module Jekyll
 
             gallery.each do |item|
                 image = Image.read("#{directory}/#{item['file']}")[0]
-                image.resize_to_fit(LargeDimension, 240)
+                image.resize_to_fit!(LargeDimension, 120)
 
                 thumbnail_file = "#{thumbnails_dir}/#{item['file']}"
                 image.write(thumbnail_file) if not File.exists? thumbnail_file
