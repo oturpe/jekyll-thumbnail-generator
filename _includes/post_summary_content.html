@@ -1,0 +1,7 @@
+<a href="{{ post.url | prepend: site.baseurl }}">
+  <img
+    class="post-summary-thumbnail"
+    src="{% page_asset_path {{ post.id }} %}/{{ post.thumbnail | default: 'thumbnail.jpg' }}"
+  >
+</a>
+{{ post.excerpt }}
