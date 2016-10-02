@@ -29,9 +29,9 @@ gallery:
 
 ```
 
-Paths are relative to `gallery` directory under [asset path plugin][asset-path]'s asset path.
+Paths are relative to [asset path plugin][asset-path]'s asset path.
 That is, for posts the gallery directory is
-`assets/posts/<post-title>/gallery/` and for pages `assets/page-title/gallery/`.
+`assets/posts/<post-title>/` and for pages `assets/<page-title>/`.
 
 Thumbnails are generated in directory `thumbnails` in the asset path.
 Thumbnails are resized to fit dimensions of 200×120 pixels, or (TODO) as specified
@@ -71,6 +71,5 @@ for example.
 
 ### TODOs
 
-1. Read images from `gallery` folder.
 2. Read thumbnail size from configuration.
 3. Implement cover thumbnail creation.
