@@ -66,7 +66,7 @@ thumbnail_cover:
 ```
 
 Cover photo thumbnail is included in pages as normal assets. See includes
-`post_summary.html` and `post_summary_content.hmtl` in `_includes` directory
+`post_summary.html` and `post_summary_content.html` in `_includes` directory
 for example. 
 
 ### TODOs
