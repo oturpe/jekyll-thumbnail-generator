@@ -34,8 +34,8 @@ That is, for posts the gallery directory is
 `assets/posts/<post-title>/` and for pages `assets/<page-title>/`.
 
 Thumbnails are generated in directory `thumbnails` in the asset path.
-Thumbnails are resized to fit dimensions of 200×120 pixels, or (TODO) as specified
-in `_config.yml` option `thumbnail_size`:
+Thumbnails are resized to fit dimensions of 200×120 pixels, or as specified in
+`_config.yml` option `thumbnail_size`:
 
 ```yml
 thumbnail_gallery:
@@ -71,5 +71,9 @@ for example.
 
 ### TODOs
 
-2. Read thumbnail size from configuration.
 3. Implement cover thumbnail creation.
+
+### Bugs
+
+1. Newly created thumbnails are not added to _site
+2. Unchanged files are not recreated
