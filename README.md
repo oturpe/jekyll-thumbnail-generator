@@ -39,7 +39,7 @@ in `_config.yml` option `thumbnail_size`:
 
 ```yml
 thumbnail_gallery:
-  width: 300
+  width:  300
   height: 180
 ```
 
@@ -61,8 +61,8 @@ Thumbnail dimensions are by default 400×240 pixels. These can be overridden in
 
 ```yml
 thumbnail_cover:
-  width: 200
-  height:  120
+  width:  200
+  height: 120
 ```
 
 Cover photo thumbnail is included in pages as normal assets. See includes
