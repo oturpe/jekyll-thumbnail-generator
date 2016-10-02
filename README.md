@@ -75,5 +75,4 @@ for example.
 
 ### Bugs
 
-1. Newly created thumbnails are not added to _site
 2. Unchanged files are not recreated
