@@ -60,8 +60,30 @@ module Jekyll
     end
 
     def thumbnail_needed?(image_file, thumbnail_file)
+        # No thumbnail yet?
         return true if not File.exists? thumbnail_file
-        return File.mtime(thumbnail_file) < File.mtime(image_file)
+        # Image has changed?
+        return true if File.mtime(thumbnail_file) < File.mtime(image_file)
+
+        # Need to resize?
+        metadata = (Image.ping thumbnail_file)[0]
+        existing_size = {
+            'width' => metadata.columns,
+            'height' => metadata.rows
+        }
+
+        print "existing_size: #{existing_size}\n"
+        print "thumbnail_gallery: #{thumbnail_gallery}\n"
+        return false if (
+            thumbnail_gallery['width'] == existing_size['width'] and
+            thumbnail_gallery['height'] > existing_size['height']
+        )
+        return false if
+            thumbnail_gallery['height'] == existing_size['height'] and
+            thumbnail_gallery['width'] > existing_size['width']
+        print "Thumbnail needed\n"
+
+        true
     end
   end
 end

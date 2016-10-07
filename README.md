@@ -76,4 +76,3 @@ for example.
 ### Bugs
 
 3. thumbnail folder is not created in site if it does not exist already
-4. thumbnails need to be recreated if thumbnail size changes
