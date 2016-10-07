@@ -72,7 +72,3 @@ for example.
 ### TODOs
 
 3. Implement cover thumbnail creation.
-
-### Bugs
-
-3. thumbnail folder is not created in site if it does not exist already

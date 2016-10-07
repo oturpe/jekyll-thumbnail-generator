@@ -36,7 +36,8 @@ module Jekyll
         end
 
         thumbnails_dir = "#{asset_dir}/#{Thumbnails_dir}"
-        Dir.mkdir thumbnails_dir if not (File.exists? thumbnails_dir)
+        thumbnail_exists = File.exists? thumbnails_dir
+        Dir.mkdir thumbnails_dir if not (thumbnail_exists)
 
         new_files = []
         gallery.each do |item|
@@ -45,6 +46,7 @@ module Jekyll
             thumbnail_file = "#{thumbnails_dir}/#{item['file']}"
 
             next if not thumbnail_needed?(image_file, thumbnail_file)
+            print "thumbnail needed for #{item['file']}\n"
 
             image.resize_to_fit!(
                 @thumbnail_gallery['width'],
@@ -52,7 +54,7 @@ module Jekyll
             )
 
             image.write(thumbnail_file)
-            new_files.push thumbnail_file if not File.exists? thumbnail_file
+            new_files.push item['file'] if not thumbnail_exists
         end        
 
         reader = StaticFileReader.new(site, thumbnails_dir)
