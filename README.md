@@ -69,6 +69,7 @@ Cover photo thumbnail is included in pages as normal assets. See includes
 `post_summary.html` and `post_summary_content.html` in `_includes` directory
 for example. 
 
-### TODOs
+### Bugs
 
-3. Implement cover thumbnail creation.
+1. Deleting a thumbnail file from assets when jekyll is running in regeneration
+mode leads to Jekyll infinitely looping recreation.
