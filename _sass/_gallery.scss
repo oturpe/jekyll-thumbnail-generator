@@ -1,0 +1,19 @@
+// To use this include, define variables thumbnail-gallery-width and
+// thumbnail-gallery-height in main.css like this:
+//
+// $thumbnail-gallery-width:
+//     {% if site.thumbnail_gallery.width == nil %}
+//         200px
+//     {% else %}
+//         {{ site.thumbnail_gallery.width}}px
+//     {% endif %}
+// ;
+
+.gallery-image-sizer {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $thumbnail-gallery-width;
+    height: $thumbnail-gallery-height;
+	padding: 3px;
+}

@@ -1,0 +1,14 @@
+  <div class="gallery">
+    <h1>More photos</h1>
+    {% for image in page.gallery %}
+      <div class="gallery-image-sizer">
+        <a href="{% asset_path {{ image.file }} %}">
+          <img
+            src="{% asset_path thumbnails/{{ image.file }} %}"
+            alt="{{ image.title }}"
+            title="{{ image.title }}"
+          />
+        </a>
+      </div>
+    {% endfor %}
+  </div>

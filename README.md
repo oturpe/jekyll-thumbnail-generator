@@ -47,6 +47,25 @@ Generated thumbnails are included in the page as normal assets. You can use
 `gallery.html` in `_includes` directory as a starting point for a gallery
 implementation.
 
+For styling the thumbnail gallery, you can use `_gallery.scss` in directory `_sass` as a starting point. It can be referenced from `main.css`, which must define sass variables `thumbnail-gallery-width` and `thumbnail-gallery-height` in Liquid like this:
+
+```scss
+$thumbnail-gallery-width:
+    {% if site.thumbnail_gallery.width == nil %}
+        200px
+    {% else %}
+        {{ site.thumbnail_gallery.width}}px
+     {% endif %}
+;
+$thumbnail-gallery-height:
+    {% if site.thumbnail_gallery.height == nil %}
+        120px
+    {% else %}
+        {{ site.thumbnail_gallery.height}}px
+     {% endif %}
+;
+```
+
 #### Creating cover photo thumbnail
 
 Also, a shrank copy for post cover image can be made. The photo to resize is by
