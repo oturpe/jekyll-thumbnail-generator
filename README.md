@@ -90,5 +90,6 @@ for example.
 
 ### Bugs
 
-1. Deleting a thumbnail file from assets when jekyll is running in regeneration
-mode leads to Jekyll infinitely looping recreation.
+1. Changing something that regerates a thumbnail leads to page being
+regenerated twice. The reason is that thumbnails are included in Jekyll's
+watch, so regenerated thumbnail itself is detected.

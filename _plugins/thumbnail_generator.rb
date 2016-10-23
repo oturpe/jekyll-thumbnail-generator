@@ -100,11 +100,11 @@ module Jekyll
 
         return false if (
             size['width'] == existing_size['width'] and
-            size['height'] > existing_size['height']
+            size['height'] >= existing_size['height']
         )
         return false if
             size['height'] == existing_size['height'] and
-            size['width'] > existing_size['width']
+            size['width'] >= existing_size['width']
 
         true
     end
