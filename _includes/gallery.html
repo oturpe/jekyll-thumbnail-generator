@@ -1,3 +1,4 @@
+{% if page.gallery %}
   <div class="gallery">
     <h1>More photos</h1>
     {% for image in page.gallery %}
@@ -12,3 +13,4 @@
       </div>
     {% endfor %}
   </div>
+{% endif %}
