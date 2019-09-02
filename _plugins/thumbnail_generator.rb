@@ -7,7 +7,7 @@ module Jekyll
     priority :low
 
     # Fixed values
-    Asset_base = "assets/posts/"
+    Asset_base = "assets"
     Thumbnails_dir = "thumbnails"
     Default_cover = "cover.jpg"
 
@@ -20,21 +20,27 @@ module Jekyll
     def generate(site)
         get_parameters! site
 
-        site.posts.docs.each do |post|
-            asset_dir = "#{Asset_base}/#{post.data['slug']}";
-            if not File.exists? asset_dir
-                raise "Asset directory '#{asset_dir}' not found."
+        # Strangly, site.collections contains lists of length 2 where item 0 is
+        # the collection name and item 1 is the collection itself. Unwrapping.
+        collections = site.collections.map { |c| c[1] }
+        collections.each do |collection|
+            collection_asset_base = "#{Asset_base}/#{collection.label}"
+            collection.docs.each do |doc|
+                asset_dir = "#{collection_asset_base}/#{doc.data['slug']}";
+                if not File.exists? asset_dir
+                    raise "Asset directory '#{asset_dir}' not found."
+                end
+
+                thumbnails_dir = "#{asset_dir}/#{Thumbnails_dir}"
+                Dir.mkdir thumbnails_dir if not File.exists? thumbnails_dir
+
+                new_files = []
+                new_files.concat generate_gallery_thumbnails(site, doc, asset_dir)
+                new_files.concat generate_cover_thumbnail(site, doc, asset_dir)
+
+                reader = StaticFileReader.new(site, thumbnails_dir)
+                site.static_files.concat(reader.read(new_files))
             end
-
-            thumbnails_dir = "#{asset_dir}/#{Thumbnails_dir}"
-            Dir.mkdir thumbnails_dir if not File.exists? thumbnails_dir
-
-            new_files = []
-            new_files.concat generate_gallery_thumbnails(site, post, asset_dir)
-            new_files.concat generate_cover_thumbnail(site, post, asset_dir)
-
-            reader = StaticFileReader.new(site, thumbnails_dir)
-            site.static_files.concat(reader.read(new_files))
         end
     end
 
@@ -43,8 +49,8 @@ module Jekyll
         @thumbnail_cover = site.config['thumbnail_cover'] || Thumbnail_cover
     end
 
-    def generate_gallery_thumbnails(site, post, asset_dir)
-        gallery = post.data['gallery']
+    def generate_gallery_thumbnails(site, doc, asset_dir)
+        gallery = doc.data['gallery']
         return [] if not gallery
 
         new_thumbnails = gallery.map do |item|
@@ -64,8 +70,8 @@ module Jekyll
         return new_thumbnails == nil ? [] : new_thumbnails.compact
     end
 
-    def generate_cover_thumbnail(site, post, asset_dir)
-        cover = post.data['cover'] || Default_cover
+    def generate_cover_thumbnail(site, doc, asset_dir)
+        cover = doc.data['cover'] || Default_cover
         cover_file = "#{asset_dir}/#{cover}"
 
         image = Image.read(cover_file)[0]
