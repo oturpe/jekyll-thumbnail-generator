@@ -98,7 +98,8 @@ module Jekyll
     def generate_cover_thumbnail(site, doc, asset_dir)
         cover = doc.data['cover'] || Default_cover
         cover_file = "#{asset_dir}/#{cover}"
-
+        return [] if ! File.exists? cover_file
+      
         image = Image.read(cover_file)[0]
         thumbnail_file = "#{asset_dir}/#{Thumbnails_dir}/#{cover}"
 
