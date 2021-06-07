@@ -51,7 +51,8 @@ module Jekyll
         collections.each do |collection|
             collection_asset_base = "#{Asset_base}/#{collection.label}"
             collection.docs.each do |doc|
-                asset_dir = "#{collection_asset_base}/#{doc.data['slug']}";
+                asset_dir = doc.data["asset_dir"] || "#{collection_asset_base}/#{doc.data['slug']}";
+              
                 if not File.exists? asset_dir
                     raise "Asset directory '#{asset_dir}' not found."
                 end
