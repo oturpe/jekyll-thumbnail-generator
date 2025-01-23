@@ -52,12 +52,12 @@ module Jekyll
             collection_asset_base = "#{Asset_base}/#{collection.label}"
             collection.docs.each do |doc|
                 asset_dir = "#{collection_asset_base}/#{doc.data['slug']}";
-                if not File.exists? asset_dir
+                if not File.exist? asset_dir
                     raise "Asset directory '#{asset_dir}' not found."
                 end
 
                 thumbnails_dir = "#{asset_dir}/#{Thumbnails_dir}"
-                Dir.mkdir thumbnails_dir if not File.exists? thumbnails_dir
+                Dir.mkdir thumbnails_dir if not File.exist? thumbnails_dir
 
                 new_files = []
                 new_files.concat generate_gallery_thumbnails(site, doc, asset_dir)
@@ -85,7 +85,7 @@ module Jekyll
 
             next nil if not thumbnail_needed?(image_file, thumbnail_file, @thumbnail_gallery)
 
-            preexisting = File.exists? thumbnail_file
+            preexisting = File.exist? thumbnail_file
             save_thumbnail image, thumbnail_file, @thumbnail_gallery
 
             next nil if preexisting
@@ -104,7 +104,7 @@ module Jekyll
 
         return [] if not thumbnail_needed?(cover_file, thumbnail_file, @thumbnail_cover)
 
-        preexisting = File.exists? thumbnail_file
+        preexisting = File.exist? thumbnail_file
         save_thumbnail image, thumbnail_file, @thumbnail_cover
 
         return [] if preexisting
@@ -118,7 +118,7 @@ module Jekyll
 
     def thumbnail_needed?(image_file, thumbnail_file, size)
         # No thumbnail yet?
-        return true if not File.exists? thumbnail_file
+        return true if not File.exist? thumbnail_file
         # Image has changed?
         return true if File.mtime(thumbnail_file) < File.mtime(image_file)
 
